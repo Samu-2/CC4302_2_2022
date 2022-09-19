@@ -1,0 +1,60 @@
+#include <stdlib.h>
+#include <stdio.h>
+#include <pthread.h>
+#include <string.h>
+#include "bolsa.h"
+
+#define vs(w, x, y, z) printf(" > %s \t[%d] \t< \t%s \t[%d]\n", w, y, x, z)
+#define ve(x, y, z)    printf("\t=#=#=#=#=#=\n $ %s \t[%d] \t$ \t%s \n", x, z, y)
+
+pthread_mutex_t m = PTHREAD_MUTEX_INITIALIZER;
+pthread_cond_t  c = PTHREAD_COND_INITIALIZER;
+typedef struct {
+    int p, e;
+    char*  v;
+    char** c;
+}o;
+o* bo = NULL;
+
+int vendo(int precio, char *vendedor, char *comprador) {
+    int r = 0;
+    pthread_mutex_lock(&m);
+    o* mo    = malloc(sizeof(o));
+    char* ve = malloc(strlen(vendedor) + 1);
+    strncpy(ve, vendedor, strlen(vendedor));
+    mo->c = &comprador;
+    mo->v =         ve;
+    mo->p =     precio;
+    mo->e =          0;
+    if (bo == NULL) {
+        bo = mo;
+        vs(mo->v, "NULL", mo->p, 0);
+    } else if (bo->p > mo->p) {
+        bo = mo;
+        pthread_cond_broadcast(&c);
+        vs(mo->v, bo->v, mo->p, bo->p);
+    }
+    while (bo == mo) {
+        pthread_cond_wait(&c, &m);
+    }
+    r = mo->e;
+    pthread_mutex_unlock(&m);
+    return  r;
+}
+
+int compro(char *comprador, char *vendedor) {
+    int r = 0;
+    pthread_mutex_lock(&m);
+    if (bo != NULL) {
+        r = bo->p;
+        bo->e = 1;
+        strncpy(*bo->c, comprador, strlen(comprador));
+        strncpy(vendedor, bo->v, strlen(bo->v));
+        ve(comprador, bo->v, bo->p);
+        ve(comprador, vendedor, r);
+        bo = NULL;
+        pthread_cond_broadcast(&c);
+    }
+    pthread_mutex_unlock(&m);
+    return  r;
+}

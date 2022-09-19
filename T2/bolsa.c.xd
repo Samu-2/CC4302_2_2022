@@ -1,0 +1,66 @@
+#include <stdlib.h>
+#include <stdio.h>
+#include <pthread.h>
+#include <string.h>
+
+#include "bolsa.h"
+
+typedef struct {
+  int price;
+  char* seller;
+  char* buyer;
+}ofert;
+
+// Declare aca sus variables globales
+pthread_mutex_t m = PTHREAD_MUTEX_INITIALIZER;
+pthread_cond_t  c = PTHREAD_COND_INITIALIZER;
+// ofert def = {(unsigned int) -1 >> 1, NULL, NULL};
+// ofert* best_offer = NULL;
+
+int   price  = (unsigned int) -1 >> 1;
+char* seller = NULL;
+char* buyer  = NULL;
+
+int vendo(int precio, char *vendedor, char *comprador) {
+  pthread_mutex_lock(&m);
+  int ret = 0;
+
+  if (seller == NULL || price > precio) {
+    seller = vendedor;
+    price  = precio;
+    pthread_cond_broadcast(&c);
+    printf(" > !   \t%s \t(%d) \n", vendedor, precio);
+    while (seller == vendedor){
+      if (buyer != NULL) {
+        strncpy(comprador, buyer, strlen(buyer));
+        buyer  = NULL;
+        seller = NULL;
+        price  = (unsigned int) -1 >>1;
+        ret = 1;
+      }
+      else {
+        pthread_cond_wait(&c, &m);
+      }
+    }
+
+  }
+
+  pthread_mutex_unlock(&m);
+  return ret;
+}
+
+int compro(char *comprador, char *vendedor) {
+  pthread_mutex_lock(&m);
+  int ret = 0;
+
+  if (seller != NULL) {
+    printf(" < %s \t$ %s \t (%d)\n ", comprador, seller, price);
+    strncpy(vendedor, seller, strlen(seller));
+    buyer = comprador;
+    ret   = price;
+    pthread_cond_broadcast(&c);
+  }
+
+  pthread_mutex_unlock(&m);
+  return ret;
+}

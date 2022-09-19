@@ -21,12 +21,15 @@ Test: speed up
 Intento: 1
 Calculando factorial de 10000 secuencialmente
 En mi computador Ryzen 3550H se demoro unos 20 segundos
-Tiempo=110 milisegundos, cifras hexadecimales=29615
+Tiempo=180 milisegundos, cifras hexadecimales=29615
 Calculando en paralelo con 4 threads
 Deberia demorarse menos que la version secuencial
 En mi computador el speed up rondaba 1.4 con 2 cores
-Llamada secuencial con i=0 j=9999
-Tiempo=117 milisegundos, speed up=0.940171
+Llamada secuencial con i=0 j=2499
+Llamada secuencial con i=0 j=2499
+Llamada secuencial con i=0 j=2499
+Llamada secuencial con i=0 j=2499
+Tiempo=55 milisegundos, speed up=3.272727
 Felicitaciones: aprobo este modo de ejecucion
 ==== run-g ====
 gcc -g -Wall -Werror -std=c18  prod.c test-prod.c BigInt.c prod.h BigInt.h -lm -lpthread -o prod.bin-g
@@ -49,16 +52,46 @@ Test: speed up
 Intento: 1
 Calculando factorial de 40000 secuencialmente
 En mi computador Ryzen 3550H se demoro unos 20 segundos
-Tiempo=435 milisegundos, cifras hexadecimales=138453
+Tiempo=424 milisegundos, cifras hexadecimales=138453
 Calculando en paralelo con 4 threads
 Deberia demorarse menos que la version secuencial
 En mi computador el speed up rondaba 1.4 con 2 cores
-Llamada secuencial con i=0 j=39999
-Tiempo=433 milisegundos, speed up=1.004619
+Llamada secuencial con i=0 j=9999
+Llamada secuencial con i=0 j=9999
+Llamada secuencial con i=0 j=9999
+Llamada secuencial con i=0 j=9999
+Tiempo=254 milisegundos, speed up=1.669291
 Felicitaciones: aprobo este modo de ejecucion
 Verificando que se crearon 4 procesos pesados
-1c1
-< 1
----
-> 4
-No aprueba: no se crearon 4 procesos
+Aprobado
+==== run ====
+gcc -O -DOPT=1 -Wall -Werror -std=c18  prod.c test-prod.c BigInt.c prod.h BigInt.h -lm -lpthread -o prod.bin
+./prod.bin
+Test: factorial de numeros pequenos con 2 a 17 threads
+100
+200
+300
+400
+500
+600
+700
+800
+900
+1000
+
+Aprobado
+--------------
+Test: speed up
+Intento: 1
+Calculando factorial de 400000 secuencialmente
+En mi computador Ryzen 3550H se demoro unos 20 segundos
+Tiempo=9747 milisegundos, cifras hexadecimales=1716698
+Calculando en paralelo con 4 threads
+Deberia demorarse menos que la version secuencial
+En mi computador el speed up rondaba 1.4 con 2 cores
+Llamada secuencial con i=0 j=99999
+Llamada secuencial con i=0 j=99999
+Llamada secuencial con i=0 j=99999
+Llamada secuencial con i=0 j=99999
+Tiempo=5705 milisegundos, speed up=1.708501
+Felicitaciones: aprobo este modo de ejecucion

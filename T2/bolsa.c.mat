@@ -1,0 +1,69 @@
+#include <stdlib.h>
+#include <stdio.h>
+#include <pthread.h>
+#include <string.h>
+#include "bolsa.h"
+
+// =#=#=#=#=#= MUTEX & COND =#=#=#=#=#=
+pthread_mutex_t m = PTHREAD_MUTEX_INITIALIZER;
+pthread_cond_t  c = PTHREAD_COND_INITIALIZER;
+
+// =#=#=#=#=#=  OFFER VARS  =#=#=#=#=#=
+// STATUS := -1 FAILED, 0 WAITING, 1 SUCCESS
+typedef struct{
+    int   price, status;
+    char* seller;
+    char* buyer;
+}offer;
+offer  def     = {((unsigned int) -1 >> 1), (0), (NULL), (NULL)};
+offer* b_offer = &def;
+
+int vendo(int precio, char *vendedor, char *comprador){
+    int ret = 0;
+    pthread_mutex_lock(&m);
+    while (b_offer->status != 0) 
+        pthread_cond_wait(&c, &m);
+    if (b_offer->price > precio) {
+        // Creating offer 
+        offer* my_offer  = malloc(sizeof(offer));
+        my_offer->price  = precio;
+        my_offer->status = 0;
+        my_offer->seller = vendedor;
+
+        // Transaction waiting and failed, broadcasting failure.
+        b_offer->status = -1;
+        pthread_cond_broadcast(&c);
+        b_offer = my_offer;
+
+        // Waiting for actualization as the best offer
+        while (my_offer->status == 0) 
+            pthread_cond_wait(&c, &m);
+
+        // Transaction was succesfull.
+        if (my_offer->status == 1) {
+            strncpy(comprador, my_offer->buyer, strlen(my_offer->buyer));
+            ret = 1;
+        }
+
+        // Offer deleted.
+        b_offer = &def;
+        free(my_offer);
+        pthread_cond_broadcast(&c);
+    }
+    pthread_mutex_unlock(&m);
+    return ret;
+}
+
+int compro(char *comprador, char *vendedor){
+    int ret = 0;
+    pthread_mutex_lock(&m);
+    if (b_offer != &def) {
+        b_offer->buyer  = comprador;
+        b_offer->status = 1;
+        ret = b_offer->price;
+        strncpy(vendedor, b_offer->seller, strlen(b_offer->seller));
+        pthread_cond_broadcast(&c);
+    }
+    pthread_mutex_unlock(&m);
+    return ret;
+}

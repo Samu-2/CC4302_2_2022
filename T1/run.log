@@ -16,10 +16,13 @@ Test: speed up
 Intento: 1
 Calculando factorial de 40000 secuencialmente
 En mi computador Ryzen 3550H se demoro unos 20 segundos
-Tiempo=435 milisegundos, cifras hexadecimales=138453
+Tiempo=424 milisegundos, cifras hexadecimales=138453
 Calculando en paralelo con 4 threads
 Deberia demorarse menos que la version secuencial
 En mi computador el speed up rondaba 1.4 con 2 cores
-Llamada secuencial con i=0 j=39999
-Tiempo=433 milisegundos, speed up=1.004619
+Llamada secuencial con i=0 j=9999
+Llamada secuencial con i=0 j=9999
+Llamada secuencial con i=0 j=9999
+Llamada secuencial con i=0 j=9999
+Tiempo=254 milisegundos, speed up=1.669291
 Felicitaciones: aprobo este modo de ejecucion

@@ -1,0 +1,478 @@
+./bolsa.bin
+El test del enunciado
+Se lanzo pedro
+pedro: vendo a 10
+ > pedro 	[10] 	< 	NULL 	[0]
+Se lanzo juan
+juan: vendo a 5
+ > juan 	[5] 	< 	juan 	[5]
+pedro: 1era. venta rechazada
+pedro: vendo a 7
+pedro: 2da. venta rechazada
+Se lanzo diego
+diego: compro
+	=#=#=#=#=#=
+ $ diego 	[5] 	$ 	juan 
+	=#=#=#=#=#=
+ $ diego 	[5] 	$ 	juan 
+diego: ok
+juan: ok
+Ok
+
+--------------------
+El test de robustez: se lanzaran 10 compradores y 100 vendedores
+Cada comprador intentara 10000 compras
+Cada . son 1000 compraventas exitosas
+Partieron
+ > vend0 	[384] 	< 	NULL 	[0]
+ > vend2 	[336] 	< 	vend2 	[336]
+ > vend4 	[28] 	< 	vend4 	[28]
+ > vend3 	[23] 	< 	vend3 	[23]
+ > vend8 	[12] 	< 	vend8 	[12]
+ > vend18 	[10] 	< 	vend18 	[10]
+ > vend22 	[5] 	< 	vend22 	[5]
+ > vend27 	[3] 	< 	vend27 	[3]
+ > vend49 	[1] 	< 	vend49 	[1]
+	=#=#=#=#=#=
+ $ comp8 	[1] 	$ 	vend49 
+	=#=#=#=#=#=
+ $ comp8 	[1] 	$ 	vend49 
+ > vend29 	[429] 	< 	NULL 	[0]
+ > vend5 	[365] 	< 	vend5 	[365]
+ > vend49 	[173] 	< 	vend49 	[173]
+	=#=#=#=#=#=
+ $ comp8 	[173] 	$ 	vend49 
+	=#=#=#=#=#=
+ $ comp8 	[173] 	$ 	vend49 
+ > vend57 	[872] 	< 	NULL 	[0]
+ > vend31 	[24] 	< 	vend31 	[24]
+ > vend49 	[20] 	< 	vend49 	[20]
+ > vend10 	[12] 	< 	vend10 	[12]
+ > vend75 	[3] 	< 	vend75 	[3]
+ > vend30 	[1] 	< 	vend30 	[1]
+	=#=#=#=#=#=
+ $ comp0 	[1] 	$ 	vend30 
+	=#=#=#=#=#=
+ $ comp0 	[1] 	$ 	vend30 
+ > vend99 	[505] 	< 	NULL 	[0]
+ > vend30 	[359] 	< 	vend30 	[359]
+	=#=#=#=#=#=
+ $ comp2 	[359] 	$ 	vend30 
+	=#=#=#=#=#=
+ $ comp2 	[359] 	$ 	vend30 
+ > vend52 	[526] 	< 	NULL 	[0]
+ > vend34 	[160] 	< 	vend34 	[160]
+	=#=#=#=#=#=
+ $ comp5 	[160] 	$ 	vend34 
+	=#=#=#=#=#=
+ $ comp5 	[160] 	$ 	vend34 
+ > vend60 	[857] 	< 	NULL 	[0]
+ > vend19 	[337] 	< 	vend19 	[337]
+ > vend36 	[82] 	< 	vend36 	[82]
+ > vend35 	[5] 	< 	vend35 	[5]
+ > vend64 	[1] 	< 	vend64 	[1]
+	=#=#=#=#=#=
+ $ comp8 	[1] 	$ 	vend64 
+	=#=#=#=#=#=
+ $ comp8 	[1] 	$ 	vend64 
+ > vend41 	[356] 	< 	NULL 	[0]
+	=#=#=#=#=#=
+ $ comp8 	[356] 	$ 	vend41 
+	=#=#=#=#=#=
+ $ comp8 	[356] 	$ 	vend41 
+ > vend38 	[426] 	< 	NULL 	[0]
+	=#=#=#=#=#=
+ $ comp8 	[426] 	$ 	vend38 
+	=#=#=#=#=#=
+ $ comp8 	[426] 	$ 	vend38 
+ > vend70 	[730] 	< 	NULL 	[0]
+ > vend71 	[18] 	< 	vend71 	[18]
+ > vend8 	[6] 	< 	vend8 	[6]
+ > vend80 	[1] 	< 	vend80 	[1]
+	=#=#=#=#=#=
+ $ comp9 	[1] 	$ 	vend80 
+	=#=#=#=#=#=
+ $ comp9 	[1] 	$ 	vend80 
+ > vend24 	[423] 	< 	NULL 	[0]
+ > vend3 	[35] 	< 	vend3 	[35]
+ > vend80 	[3] 	< 	vend80 	[3]
+ > vend53 	[2] 	< 	vend53 	[2]
+	=#=#=#=#=#=
+ $ comp0 	[2] 	$ 	vend53 
+	=#=#=#=#=#=
+ $ comp0 	[2] 	$ 	vend53 
+ > vend55 	[860] 	< 	NULL 	[0]
+	=#=#=#=#=#=
+ $ comp3 	[860] 	$ 	vend55 
+	=#=#=#=#=#=
+ $ comp3 	[860] 	$ 	vend55 
+ > vend59 	[281] 	< 	NULL 	[0]
+ > vend55 	[138] 	< 	vend55 	[138]
+ > vend58 	[75] 	< 	vend58 	[75]
+ > vend52 	[62] 	< 	vend52 	[62]
+	=#=#=#=#=#=
+ $ comp4 	[62] 	$ 	vend52 
+	=#=#=#=#=#=
+ $ comp4 	[62] 	$ 	vend52 
+ > vend61 	[845] 	< 	NULL 	[0]
+ > vend52 	[501] 	< 	vend52 	[501]
+	=#=#=#=#=#=
+ $ comp5 	[501] 	$ 	vend52 
+	=#=#=#=#=#=
+ $ comp5 	[501] 	$ 	vend52 
+ > vend52 	[767] 	< 	NULL 	[0]
+ > vend19 	[637] 	< 	vend19 	[637]
+ > vend65 	[134] 	< 	vend65 	[134]
+ > vend52 	[67] 	< 	vend52 	[67]
+	=#=#=#=#=#=
+ $ comp1 	[67] 	$ 	vend52 
+	=#=#=#=#=#=
+ $ comp1 	[67] 	$ 	vend52 
+ > vend67 	[968] 	< 	NULL 	[0]
+ > vend41 	[349] 	< 	vend41 	[349]
+ > vend67 	[39] 	< 	vend67 	[39]
+ > vend69 	[28] 	< 	vend69 	[28]
+ > vend67 	[22] 	< 	vend67 	[22]
+ > vend69 	[13] 	< 	vend69 	[13]
+ > vend42 	[9] 	< 	vend42 	[9]
+ > vend81 	[8] 	< 	vend81 	[8]
+ > vend20 	[2] 	< 	vend20 	[2]
+	=#=#=#=#=#=
+ $ comp9 	[2] 	$ 	vend20 
+	=#=#=#=#=#=
+ $ comp9 	[2] 	$ 	vend20 
+ > vend13 	[532] 	< 	NULL 	[0]
+ > vend93 	[53] 	< 	vend93 	[53]
+ > vend13 	[10] 	< 	vend13 	[10]
+ > vend93 	[3] 	< 	vend93 	[3]
+	=#=#=#=#=#=
+ $ comp0 	[3] 	$ 	vend93 
+	=#=#=#=#=#=
+ $ comp0 	[3] 	$ 	vend93 
+ > vend93 	[496] 	< 	NULL 	[0]
+	=#=#=#=#=#=
+ $ comp7 	[496] 	$ 	vend93 
+	=#=#=#=#=#=
+ $ comp7 	[496] 	$ 	vend93 
+ > vend57 	[225] 	< 	NULL 	[0]
+	=#=#=#=#=#=
+ $ comp4 	[225] 	$ 	vend57 
+	=#=#=#=#=#=
+ $ comp4 	[225] 	$ 	vend57 
+ > vend61 	[960] 	< 	NULL 	[0]
+ > vend15 	[458] 	< 	vend15 	[458]
+ > vend61 	[231] 	< 	vend61 	[231]
+ > vend57 	[119] 	< 	vend57 	[119]
+ > vend64 	[101] 	< 	vend64 	[101]
+ > vend57 	[24] 	< 	vend57 	[24]
+ > vend64 	[2] 	< 	vend64 	[2]
+ > vend33 	[1] 	< 	vend33 	[1]
+	=#=#=#=#=#=
+ $ comp0 	[1] 	$ 	vend33 
+	=#=#=#=#=#=
+ $ comp0 	[1] 	$ 	vend33 
+ > vend13 	[643] 	< 	NULL 	[0]
+ > vend98 	[75] 	< 	vend98 	[75]
+ > vend13 	[30] 	< 	vend13 	[30]
+ > vend63 	[19] 	< 	vend63 	[19]
+	=#=#=#=#=#=
+ $ comp4 	[19] 	$ 	vend63 
+	=#=#=#=#=#=
+ $ comp4 	[19] 	$ 	vend63 
+ > vend15 	[873] 	< 	NULL 	[0]
+ > vend66 	[344] 	< 	vend66 	[344]
+ > vend15 	[190] 	< 	vend15 	[190]
+	=#=#=#=#=#=
+ $ comp5 	[190] 	$ 	vend15 
+	=#=#=#=#=#=
+ $ comp5 	[190] 	$ 	vend15 
+ > vend41 	[225] 	< 	NULL 	[0]
+ > vend15 	[57] 	< 	vend15 	[57]
+	=#=#=#=#=#=
+ $ comp5 	[57] 	$ 	vend15 
+	=#=#=#=#=#=
+ $ comp5 	[57] 	$ 	vend15 
+ > vend68 	[987] 	< 	NULL 	[0]
+	=#=#=#=#=#=
+ $ comp8 	[987] 	$ 	vend68 
+	=#=#=#=#=#=
+ $ comp8 	[987] 	$ 	vend68 
+ > vend77 	[719] 	< 	NULL 	[0]
+ > vend68 	[84] 	< 	vend68 	[84]
+	=#=#=#=#=#=
+ $ comp8 	[84] 	$ 	vend68 
+	=#=#=#=#=#=
+ $ comp8 	[84] 	$ 	vend68 
+ > vend74 	[15] 	< 	NULL 	[0]
+ > vend77 	[3] 	< 	vend77 	[3]
+ > vend8 	[1] 	< 	vend8 	[1]
+	=#=#=#=#=#=
+ $ comp7 	[1] 	$ 	vend8 
+	=#=#=#=#=#=
+ $ comp7 	[1] 	$ 	vend83 
+ > vend33 	[530] 	< 	NULL 	[0]
+ > vend37 	[52] 	< 	vend37 	[52]
+ > vend33 	[6] 	< 	vend33 	[6]
+ > vend62 	[3] 	< 	vend62 	[3]
+ > vend92 	[1] 	< 	vend92 	[1]
+	=#=#=#=#=#=
+ $ comp6 	[1] 	$ 	vend92 
+	=#=#=#=#=#=
+ $ comp6 	[1] 	$ 	vend92 
+ > vend41 	[454] 	< 	NULL 	[0]
+ > vend38 	[314] 	< 	vend38 	[314]
+ > vend92 	[81] 	< 	vend92 	[81]
+	=#=#=#=#=#=
+ $ comp6 	[81] 	$ 	vend92 
+	=#=#=#=#=#=
+ $ comp6 	[81] 	$ 	vend92 
+ > vend31 	[804] 	< 	NULL 	[0]
+ > vend49 	[274] 	< 	vend49 	[274]
+	=#=#=#=#=#=
+ $ comp5 	[274] 	$ 	vend49 
+	=#=#=#=#=#=
+ $ comp5 	[274] 	$ 	vend49 
+ > vend37 	[456] 	< 	NULL 	[0]
+	=#=#=#=#=#=
+ $ comp8 	[456] 	$ 	vend37 
+	=#=#=#=#=#=
+ $ comp8 	[456] 	$ 	vend37 
+ > vend57 	[746] 	< 	NULL 	[0]
+ > vend71 	[476] 	< 	vend71 	[476]
+ > vend68 	[128] 	< 	vend68 	[128]
+ > vend10 	[78] 	< 	vend10 	[78]
+	=#=#=#=#=#=
+ $ comp8 	[78] 	$ 	vend10 
+	=#=#=#=#=#=
+ $ comp8 	[78] 	$ 	vend10 
+ > vend23 	[885] 	< 	NULL 	[0]
+ > vend45 	[133] 	< 	vend45 	[133]
+ > vend44 	[48] 	< 	vend44 	[48]
+	=#=#=#=#=#=
+ $ comp8 	[48] 	$ 	vend44 
+	=#=#=#=#=#=
+ $ comp8 	[48] 	$ 	vend44 
+ > vend22 	[689] 	< 	NULL 	[0]
+ > vend85 	[60] 	< 	vend85 	[60]
+ > vend22 	[40] 	< 	vend22 	[40]
+ > vend88 	[5] 	< 	vend88 	[5]
+ > vend11 	[2] 	< 	vend11 	[2]
+ > vend99 	[1] 	< 	vend99 	[1]
+	=#=#=#=#=#=
+ $ comp9 	[1] 	$ 	vend99 
+	=#=#=#=#=#=
+ $ comp9 	[1] 	$ 	vend99 
+ > vend55 	[272] 	< 	NULL 	[0]
+ > vend99 	[207] 	< 	vend99 	[207]
+	=#=#=#=#=#=
+ $ comp9 	[207] 	$ 	vend99 
+	=#=#=#=#=#=
+ $ comp9 	[207] 	$ 	vend99 
+ > vend74 	[886] 	< 	NULL 	[0]
+	=#=#=#=#=#=
+ $ comp0 	[886] 	$ 	vend74 
+	=#=#=#=#=#=
+ $ comp0 	[886] 	$ 	vend74 
+ > vend13 	[212] 	< 	NULL 	[0]
+ > vend74 	[147] 	< 	vend74 	[147]
+	=#=#=#=#=#=
+ $ comp0 	[147] 	$ 	vend74 
+	=#=#=#=#=#=
+ $ comp0 	[147] 	$ 	vend74 
+ > vend24 	[271] 	< 	NULL 	[0]
+ > vend89 	[52] 	< 	vend89 	[52]
+ > vend30 	[20] 	< 	vend30 	[20]
+ > vend89 	[2] 	< 	vend89 	[2]
+	=#=#=#=#=#=
+ $ comp6 	[2] 	$ 	vend89 
+	=#=#=#=#=#=
+ $ comp6 	[2] 	$ 	vend89 
+ > vend42 	[837] 	< 	NULL 	[0]
+ > vend39 	[487] 	< 	vend39 	[487]
+ > vend89 	[280] 	< 	vend89 	[280]
+	=#=#=#=#=#=
+ $ comp6 	[280] 	$ 	vend89 
+	=#=#=#=#=#=
+ $ comp6 	[280] 	$ 	vend89 
+ > vend0 	[416] 	< 	NULL 	[0]
+ > vend81 	[261] 	< 	vend81 	[261]
+ > vend26 	[174] 	< 	vend26 	[174]
+ > vend21 	[52] 	< 	vend21 	[52]
+ > vend12 	[18] 	< 	vend12 	[18]
+ > vend43 	[7] 	< 	vend43 	[7]
+ > vend91 	[3] 	< 	vend91 	[3]
+ > vend3 	[2] 	< 	vend3 	[2]
+	=#=#=#=#=#=
+ $ comp1 	[2] 	$ 	vend3 
+	=#=#=#=#=#=
+ $ comp1 	[2] 	$ 	vend32 
+ > vend93 	[75] 	< 	NULL 	[0]
+	=#=#=#=#=#=
+ $ comp5 	[75] 	$ 	vend93 
+	=#=#=#=#=#=
+ $ comp5 	[75] 	$ 	vend93 
+ > vend73 	[703] 	< 	NULL 	[0]
+ > vend41 	[381] 	< 	vend41 	[381]
+	< 	vend57 	[119]
+ > vend64 	[101] 	< 	vend64 	[101]
+ > vend57 	[24] 	< 	vend57 	[24]
+ > vend64 	[2] 	< 	vend64 	[2]
+ > vend33 	[1] 	< 	vend33 	[1]
+	=#=#=#=#=#=
+ $ comp0 	[1] 	$ 	vend33 
+	=#=#=#=#=#=
+ $ comp0 	[1] 	$ 	vend33 
+ > vend13 	[643] 	< 	NULL 	[0]
+ > vend98 	[75] 	< 	vend98 	[75]
+ > vend13 	[30] 	< 	vend13 	[30]
+ > vend63 	[19] 	< 	vend63 	[19]
+	=#=#=#=#=#=
+ $ comp4 	[19] 	$ 	vend63 
+	=#=#=#=#=#=
+ $ comp4 	[19] 	$ 	vend63 
+ > vend15 	[873] 	< 	NULL 	[0]
+ > vend66 	[344] 	< 	vend66 	[344]
+ > vend15 	[190] 	< 	vend15 	[190]
+	=#=#=#=#=#=
+ $ comp5 	[190] 	$ 	vend15 
+	=#=#=#=#=#=
+ $ comp5 	[190] 	$ 	vend15 
+ > vend41 	[225] 	< 	NULL 	[0]
+ > vend15 	[57] 	< 	vend15 	[57]
+	=#=#=#=#=#=
+ $ comp5 	[57] 	$ 	vend15 
+	=#=#=#=#=#=
+ $ comp5 	[57] 	$ 	vend15 
+ > vend68 	[987] 	< 	NULL 	[0]
+	=#=#=#=#=#=
+ $ comp8 	[987] 	$ 	vend68 
+	=#=#=#=#=#=
+ $ comp8 	[987] 	$ 	vend68 
+ > vend77 	[719] 	< 	NULL 	[0]
+ > vend68 	[84] 	< 	vend68 	[84]
+	=#=#=#=#=#=
+ $ comp8 	[84] 	$ 	vend68 
+	=#=#=#=#=#=
+ $ comp8 	[84] 	$ 	vend68 
+ > vend74 	[15] 	< 	NULL 	[0]
+ > vend77 	[3] 	< 	vend77 	[3]
+ > vend8 	[1] 	< 	vend8 	[1]
+	=#=#=#=#=#=
+ $ comp7 	[1] 	$ 	vend8 
+	=#=#=#=#=#=
+ $ comp7 	[1] 	$ 	vend83 
+ > vend33 	[530] 	< 	NULL 	[0]
+ > vend37 	[52] 	< 	vend37 	[52]
+ > vend33 	[6] 	< 	vend33 	[6]
+ > vend62 	[3] 	< 	vend62 	[3]
+ > vend92 	[1] 	< 	vend92 	[1]
+	=#=#=#=#=#=
+ $ comp6 	[1] 	$ 	vend92 
+	=#=#=#=#=#=
+ $ comp6 	[1] 	$ 	vend92 
+ > vend41 	[454] 	< 	NULL 	[0]
+ > vend38 	[314] 	< 	vend38 	[314]
+ > vend92 	[81] 	< 	vend92 	[81]
+	=#=#=#=#=#=
+ $ comp6 	[81] 	$ 	vend92 
+	=#=#=#=#=#=
+ $ comp6 	[81] 	$ 	vend92 
+ > vend31 	[804] 	< 	NULL 	[0]
+ > vend49 	[274] 	< 	vend49 	[274]
+	=#=#=#=#=#=
+ $ comp5 	[274] 	$ 	vend49 
+	=#=#=#=#=#=
+ $ comp5 	[274] 	$ 	vend49 
+ > vend37 	[456] 	< 	NULL 	[0]
+	=#=#=#=#=#=
+ $ comp8 	[456] 	$ 	vend37 
+	=#=#=#=#=#=
+ $ comp8 	[456] 	$ 	vend37 
+ > vend57 	[746] 	< 	NULL 	[0]
+ > vend71 	[476] 	< 	vend71 	[476]
+ > vend68 	[128] 	< 	vend68 	[128]
+ > vend10 	[78] 	< 	vend10 	[78]
+	=#=#=#=#=#=
+ $ comp8 	[78] 	$ 	vend10 
+	=#=#=#=#=#=
+ $ comp8 	[78] 	$ 	vend10 
+ > vend23 	[885] 	< 	NULL 	[0]
+ > vend45 	[133] 	< 	vend45 	[133]
+ > vend44 	[48] 	< 	vend44 	[48]
+	=#=#=#=#=#=
+ $ comp8 	[48] 	$ 	vend44 
+	=#=#=#=#=#=
+ $ comp8 	[48] 	$ 	vend44 
+ > vend22 	[689] 	< 	NULL 	[0]
+ > vend85 	[60] 	< 	vend85 	[60]
+ > vend22 	[40] 	< 	vend22 	[40]
+ > vend88 	[5] 	< 	vend88 	[5]
+ > vend11 	[2] 	< 	vend11 	[2]
+ > vend99 	[1] 	< 	vend99 	[1]
+	=#=#=#=#=#=
+ $ comp9 	[1] 	$ 	vend99 
+	=#=#=#=#=#=
+ $ comp9 	[1] 	$ 	vend99 
+ > vend55 	[272] 	< 	NULL 	[0]
+ > vend99 	[207] 	< 	vend99 	[207]
+	=#=#=#=#=#=
+ $ comp9 	[207] 	$ 	vend99 
+	=#=#=#=#=#=
+ $ comp9 	[207] 	$ 	vend99 
+ > vend74 	[886] 	< 	NULL 	[0]
+	=#=#=#=#=#=
+ $ comp0 	[886] 	$ 	vend74 
+	=#=#=#=#=#=
+ $ comp0 	[886] 	$ 	vend74 
+ > vend13 	[212] 	< 	NULL 	[0]
+ > vend74 	[147] 	< 	vend74 	[147]
+	=#=#=#=#=#=
+ $ comp0 	[147] 	$ 	vend74 
+	=#=#=#=#=#=
+ $ comp0 	[147] 	$ 	vend74 
+ > vend24 	[271] 	< 	NULL 	[0]
+ > vend89 	[52] 	< 	vend89 	[52]
+ > vend30 	[20] 	< 	vend30 	[20]
+ > vend89 	[2] 	< 	vend89 	[2]
+	=#=#=#=#=#=
+ $ comp6 	[2] 	$ 	vend89 
+	=#=#=#=#=#=
+ $ comp6 	[2] 	$ 	vend89 
+ > vend42 	[837] 	< 	NULL 	[0]
+ > vend39 	[487] 	< 	vend39 	[487]
+ > vend89 	[280] 	< 	vend89 	[280]
+	=#=#=#=#=#=
+ $ comp6 	[280] 	$ 	vend89 
+	=#=#=#=#=#=
+ $ comp6 	[280] 	$ 	vend89 
+ > vend0 	[416] 	< 	NULL 	[0]
+ > vend81 	[261] 	< 	vend81 	[261]
+ > vend26 	[174] 	< 	vend26 	[174]
+ > vend21 	[52] 	< 	vend21 	[52]
+ > vend12 	[18] 	< 	vend12 	[18]
+ > vend43 	[7] 	< 	vend43 	[7]
+ > vend91 	[3] 	< 	vend91 	[3]
+ > vend3 	[2] 	< 	vend3 	[2]
+	=#=#=#=#=#=
+ $ comp1 	[2] 	$ 	vend3 
+	=#=#=#=#=#=
+ $ comp1 	[2] 	$ 	vend32 
+ > vend93 	[75] 	< 	NULL 	[0]
+	=#=#=#=#=#=
+ $ comp5 	[75] 	$ 	vend93 
+	=#=#=#=#=#=
+ $ comp5 	[75] 	$ 	vend93 
+ > vend73 	[703] 	< 	NULL 	[0]
+ > vend41 	[381] 	< 	vend41 	[381]
+ > vend30 	[61] 	< 	vend30 	[61]
+	=#=#=#=#=#=
+ $ comp9 	[61] 	$ 	vend30 
+	=#=#=#=#=#=
+ $ comp9 	[61] 	$ 	vend30 
+ > vend37 	[287] 	< 	NULL 	[0]
+ > vend76 	[75] 	< 	vend76 	[75]
+ > vend30 	[37] 	< 	vend30 	[37]
+	=#=#=#=#=#=
+ $ comp9 	[37] 	$ 	vend30 
+	=#=#=#=#=#=
+ $

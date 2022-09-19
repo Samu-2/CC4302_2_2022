@@ -6,6 +6,60 @@
 
 #include "prod.h"
 
+typedef struct{
+  BigNum *ret;
+  int *a;
+  int  i;
+  int  p;
+}ArrayProdArg;
+
+void *parArrayProdDAC(void *ptr) {
+  ArrayProdArg *args = ptr;
+  int *a = args->a;
+  int  i = args->i;
+  int  p = args->p;
+
+  if (p == 0) {
+    // Edge case, returning the neutral element.
+    args->ret = smallNum(1);
+    return NULL;
+  }
+
+  if (p == 1 || (i/2) == 0) {
+    // 1. this is the load!
+    // 2. if the interval can't be divided that's it, not our problem anymore.
+    args->ret = seqArrayProd(a, 0, i);
+    return NULL;
+  }
+
+  else {
+    // Distributing the load
+    ArrayProdArg la, ra;
+    la.ret = NULL;
+    la.a   = a;
+    la.i   = i/2;
+    la.p   = p/2;
+
+    ra.ret = NULL;
+    ra.a   = &a[i/2+1];
+    ra.i   = i-i/2-1;
+    ra.p   = p-p/2;
+
+    // getting the threads up running
+    pthread_t lt, rt;
+    pthread_create(&lt, NULL, parArrayProdDAC, &la);
+    pthread_create(&rt, NULL, parArrayProdDAC, &ra);
+    pthread_join(lt, NULL);
+    pthread_join(rt, NULL);
+    BigNum *prod = bigMul(la.ret, ra.ret);
+    freeBigNum(la.ret);
+    freeBigNum(ra.ret);
+    args->ret = prod;
+  }
+
+  return NULL;
+}
+
 BigNum *parArrayProd(int a[], int i, int j, int p) {
   // Programe aca una version paralela del producto de los enteros
   // de un arreglo desde los indices i al j, usando p threads
@@ -25,7 +79,23 @@ BigNum *parArrayProd(int a[], int i, int j, int p) {
   // finalmente el producto de los resultados calculados por ambos threads.
 
   // Esto compila y pasa make run-san, pero no pasa run-O ni run-g
-  return seqArrayProd(a, i, j);
+  
+  // printf("Args: %d, %d, %d\n", a[j], i, j);
+
+  if (i>j) {
+    fprintf(stderr, "Asercion fallida: i > j\n");
+    exit(1);
+  }
+
+  ArrayProdArg res;
+  res.ret = NULL;
+  res.a   = a;
+  res.i   = j;
+  res.p   = p;
+
+  parArrayProdDAC(&res);
+  
+  return res.ret;
 }
 
 // El valor del producto puede exceder el limite de representacion
