@@ -3,6 +3,9 @@
         "pthread.h": "c",
         "string.h": "c",
         "bolsa.h": "c",
-        "stdio.h": "c"
+        "stdio.h": "c",
+        "pss.h": "c",
+        "disco.h": "c",
+        "unistd.h": "c"
     }
 }

@@ -1,12 +1,12 @@
 #define _DEFAULT_SOURCE
+#define _XOPEN_SOURCE 500
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include <pthread.h>
-#include <semaphore.h>
+#include <nthread.h>
 
-#include "rqst.c"
 #include "pss.h"
 #include "disco.h"
 
