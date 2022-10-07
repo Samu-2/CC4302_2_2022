@@ -6,7 +6,6 @@
 #include <pthread.h>
 #include <semaphore.h>
 
-#include "rqst.c"
 #include "pss.h"
 #include "disco.h"
 

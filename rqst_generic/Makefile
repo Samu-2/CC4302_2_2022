@@ -3,7 +3,7 @@
 #
 #
 
-PROB=disco
+PROB=main
 
 SRCS= test-$(PROB).c $(PROB).c pss.c rqst.c
 HDRS= $(PROB).h pss.h rqst.h
