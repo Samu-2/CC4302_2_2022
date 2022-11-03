@@ -6,6 +6,7 @@
         "stdio.h": "c",
         "pss.h": "c",
         "disco.h": "c",
-        "unistd.h": "c"
+        "unistd.h": "c",
+        "nthread-impl.h": "c"
     }
 }
