@@ -7,30 +7,45 @@
 #include "priqueue.h"
 #include "spinlocks.h"
 
-// Le sera de ayuda la clase sobre semáforos:
-// https://www.u-cursos.cl/ingenieria/2022/2/CC4302/1/novedades/detalle?id=431689
-// Le serviran la solucion del productor/consumidor resuelto con el patron
-// request y la solucion de los lectores/escritores, tambien resuelto con
-// el patron request.  Puede substituir los semaforos de esas soluciones
-// por spin-locks, porque esos semaforos almacenan a lo mas una sola ficha.
-
-
-// Declare los tipos que necesite
-
-
-// Declare aca las variables globales que necesite
-// ...
-
-// Agregue aca las funciones requestDisk y releaseDisk
+enum relativePosition   {BEHIND, FOWARD};
+enum armState           {IDLE = -1};
+PriQueue*               armSchedule[2];  
+int spinScheduler, armTrack;
 
 void iniDisk(void) {
-    
+    armSchedule[BEHIND] = makePriQueue();
+    armSchedule[FOWARD] = makePriQueue();
+    spinScheduler       = OPEN;
+    armTrack            = IDLE;
 }
 
 void requestDisk(int track) {
-
+    spinLock(&spinScheduler);
+    if (armTrack != IDLE) {
+        int spinWait= CLOSED;
+        int relPos  = track >= armTrack ? FOWARD: BEHIND;
+        priPut(armSchedule[relPos], &spinWait, track);
+        spinUnlock(&spinScheduler);
+        spinLock(&spinWait);
+        spinLock(&spinScheduler);
+    }
+    armTrack = track;
+    spinUnlock(&spinScheduler);
+    return;
 }
 
 void releaseDisk() {
-
+    spinLock(&spinScheduler);
+    if (emptyPriQueue(armSchedule[FOWARD])){
+        PriQueue* swapPri   = armSchedule[FOWARD];
+        armSchedule[FOWARD] = armSchedule[BEHIND];
+        armSchedule[BEHIND] = swapPri;
+    }
+    if (!emptyPriQueue(armSchedule[FOWARD])) {
+        int *spinWaiting = priGet(armSchedule[FOWARD]);
+        spinUnlock(spinWaiting);
+    }
+    else armTrack = IDLE;
+    spinUnlock(&spinScheduler);
+    return;
 }
